@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Página Inicial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        h1 {
+            color: #007BFF;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007BFF;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .info-box {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .info-box h2 {
+            color: #007BFF;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #555;
+        }
+
+        .cta {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo ao meu site!</h1>
+        <div class="info-box">
+            <h2>Sobre o site</h2>
+            <p>Este é um site que cadastra dados de jogadores de futebol, criado pelo Cauê</p>
+        </div>
+        <div class="cta">
+            <input type="submit" id="redirecionarBtn" value="Redirecionar para site">
+        </div>
+    </div>
+
+    <script>
+        // Função para redirecionar para a URL "jogador/"
+        function redirecionarParaJogador() {
+            window.location.href = '/jogador/';
+        }
+
+        // Associar a função ao evento de clique do botão
+        document.getElementById('redirecionarBtn').addEventListener('click', redirecionarParaJogador);
+    </script>
+</body>
+</html>
