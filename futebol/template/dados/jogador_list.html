@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogadores</title>
+    <link rel="shortcut icon" href="53205.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #007BFF;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin: 30px auto;
+        
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007BFF;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 30px auto;
+            max-width: 600px;
+        }
+
+        li {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .actions a {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de jogadores</h1>
+    <input type="submit" onclick="SubmitFunction()" value="Criar Jogador">
+    <input type="submit" onclick="DadosFunction()" value="Cadastrar números"> 
+    <input type="submit" onclick="ClubeFunction()" value="Cadastrar clube"> 
+    
+
+    <ul>
+        {% for Jogador in object_list %}
+        <li>{{Jogador.nome}} -<a href="{% url 'dados:update' pk=Jogador.id %}">Editar</a>
+            <a href="{% url 'dados:detail' pk=Jogador.id %}"> Visualizar</a>
+            <a href="{% url 'dados:delete' pk=Jogador.id %}"> Excluir</a>
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <script>
+
+        function ClubeFunction(){ 
+            window.location.href = "{% url 'dados:clube_create' %}";
+        }
+
+        function DadosFunction(){ 
+            
+            window.location.href = "{% url 'dados:dados' %}";
+
+        }
+
+        function SubmitFunction() { 
+            window.location.href = "{% url 'dados:create' %}";
+        }
+    </script>
+    
+    
+    
+</body>
+</html>

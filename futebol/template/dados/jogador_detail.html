@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizar Jogador</title>
+    <link rel="shortcut icon" href="{% static '53205.png' %}" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+
+        h1 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 5px;
+            color: #007BFF;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            
+
+        }
+
+     
+        p {
+            font-style: italic;
+        }
+
+        div {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        #teste {
+            margin-top: 20px;
+            padding: 0;
+        }
+
+        img {
+            width: 150px;
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            border-radius: 60%;
+            height: 150px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+
+        <h1>Visualizar Jogador</h1>
+    </header>
+    <a href="{% url 'dados:list' %}"> Voltar </a>
+    <div class="container">
+        {% if jogador.foto %}
+        <img src="{{ jogador.foto.url }}" alt="{{ jogador.nome }}">
+        {% else %}
+        <p>Foto de perfil não disponível.</p>
+        {% endif %}
+    
+     
+        <ul>
+            <li><strong>Nome:</strong> {{ jogador.nome }}</li>
+            <li><strong>Idade:</strong> {{ jogador.idade }}</li>
+            <li><strong>Clube atual:</strong> {{ jogador.clube }}</li>
+            
+        </ul>
+  
+        <div>
+            <h3>Dados de Temporadas</h3>
+            <ul id="teste">
+                {% for temporada in jogador.dados_set.all %}
+                    {% if temporada.temporada != 0 %}
+                        <li>
+                            <h4>Clube {{ temporada.clube_detail }}</h4>
+                            <h4 id="temporada">Temporada {{ temporada.temporada }}</h4>
+                            <h4 id="temporada"> {{ temporada.Competicao }}</h4>
+                            
+                            <ul>
+                                <li>Partidas: {{ temporada.partidas }}</li>
+                                <li>Gols: {{ temporada.gols }}</li>
+                                <li>Assistências: {{ temporada.assistências }}</li>
+                            </ul>
+                            <a href="{% url 'dados:dados_delete' pk=temporada.pk %}">Excluir dados da temporada</a>
+                           
+                            
+                        </li>
+                  
+                    {% elif temporada.temporada == 0 %}
+                    <li>
+
+                       
+                        <h4 id="temporada"> {{ temporada.Competicao }}</h4>
+                        
+                        <ul>
+                            <li>Partidas: {{ temporada.partidas }}</li>
+                            <li>Gols: {{ temporada.gols }}</li>
+                            <li>Assistências: {{ temporada.assistências }}</li>
+                        </ul>
+                        <a href="{% url 'dados:dados_delete' pk=temporada.pk %}">Excluir dados da temporada</a>
+                    </li>
+                    {% endif %}
+
+                {% endfor %}
+            </ul>
+        </div>
+    <script>
+        function DetailFunction() { 
+            window.location.href = "{% url 'dados:list' %}";
+        }
+
+   
+
+
+
+
+    </script>
+</body>
+</html>
